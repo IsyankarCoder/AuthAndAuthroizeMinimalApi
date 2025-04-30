@@ -23,3 +23,4 @@ C:\Repo\NETCORE\API\AuthAndAuthroizeMinimalApi\obj\Debug\net7.0\refint\AuthAndAu
 C:\Repo\NETCORE\API\AuthAndAuthroizeMinimalApi\obj\Debug\net7.0\AuthAndAuthroizeMinimalApi.pdb
 C:\Repo\NETCORE\API\AuthAndAuthroizeMinimalApi\obj\Debug\net7.0\AuthAndAuthroizeMinimalApi.genruntimeconfig.cache
 C:\Repo\NETCORE\API\AuthAndAuthroizeMinimalApi\obj\Debug\net7.0\ref\AuthAndAuthroizeMinimalApi.dll
+C:\Repo\NETCORE\API\AuthAndAuthroizeMinimalApi\obj\Debug\net7.0\AuthAndAuthroizeMinimalApi.sourcelink.json
