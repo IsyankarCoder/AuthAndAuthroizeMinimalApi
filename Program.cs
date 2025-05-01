@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDataProtection(c=>{
    c.ApplicationDiscriminator="Volki Tolki";
 });
+
+builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
@@ -28,6 +30,11 @@ app.MapGet("/login",(HttpContext ctx,IDataProtectionProvider idp)=>{
     ctx.Response.Headers["set-cookie"]=$"auth={protector.Protect("usr:volkan")}";
   return "Ok";
 });
+
+if(app.Environment.IsDevelopment()){
+    app.UseSwagger();
+    app.UseSwaggerUI(); 
+}
 
 app.Run();
 
