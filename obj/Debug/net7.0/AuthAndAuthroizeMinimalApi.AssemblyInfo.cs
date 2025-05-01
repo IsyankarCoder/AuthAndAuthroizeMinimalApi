@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AuthAndAuthroizeMinimalApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b73fea8c2e6791fce047281a7d8b3e4546c91bc2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3e433f04d242e4102e1cbdc53a825958f23ddec")]
 [assembly: System.Reflection.AssemblyProductAttribute("AuthAndAuthroizeMinimalApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AuthAndAuthroizeMinimalApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

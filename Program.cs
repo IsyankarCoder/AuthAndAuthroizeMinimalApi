@@ -1,18 +1,24 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<AuthService>();
+builder.Services.AddAuthentication("cookie").
+                 AddCookie("cookie");
+
+/*builder.Services.AddAuthentication("volki")
+.AddCookie("volki");   */   
+//builder.Services.AddScoped<AuthService>();
 builder.Services.AddDataProtection(c=>{
    c.ApplicationDiscriminator="Volki Tolki";
 });
 
 
 var app = builder.Build();
-
-app.Use((ctx,next)=>{
+app.UseAuthentication();
+/*app.Use((ctx,next)=>{
     var idp = ctx.RequestServices.GetRequiredService<IDataProtectionProvider>();
     var protector = idp.CreateProtector("auth-cookie");
 
@@ -33,7 +39,7 @@ app.Use((ctx,next)=>{
 
     }
  return next();
-});
+});*/
 
 app.MapGet("/", () => "Hello World!");
 
@@ -42,8 +48,20 @@ app.MapGet("/username",(HttpContext ctx)=>{
   
 });
 
-app.MapGet("/login",(AuthService auth)=>{
-    auth.SignIn();
+app.MapGet("/login",async (HttpContext ctx)=>{
+
+
+   var claims = new List<Claim>();
+   claims.Add(new Claim("usr","volkan"));
+   var identity =  new ClaimsIdentity(claims,"cookie");
+   var identity2 = new ClaimsIdentity(claims,"volki");
+
+  /* var  identityList = new List<ClaimsIdentity>{
+     identity,identity2
+   };*/
+   var user = new ClaimsPrincipal(identity); 
+   
+   await ctx.SignInAsync("cookie",user);
   return "Ok";
 });
 
@@ -55,7 +73,7 @@ if(!app.Environment.IsDevelopment()){
 app.Run();
 
 
-public class AuthService{
+/*public class AuthService{
    private readonly IDataProtectionProvider _idp;
    private readonly IHttpContextAccessor _accessor;
 
@@ -68,4 +86,4 @@ public class AuthService{
     var protector = _idp.CreateProtector("auth-cookie");
     _accessor.HttpContext.Response.Headers["set-cookie"] = $"auth={protector.Protect("usr:volkan")}";
    }
-}
+}*/
